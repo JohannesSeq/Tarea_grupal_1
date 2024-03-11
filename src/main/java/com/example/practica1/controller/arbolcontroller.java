@@ -1,6 +1,7 @@
 package com.example.practica1.controller;
 
 import com.example.practica1.domain.Arbol;
+
 import com.example.practica1.service.arbolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Controlador para el manejo de los árboles.
+ */
 @Controller
 @Slf4j
 @RequestMapping("/arbol")
@@ -21,7 +25,7 @@ public class arbolcontroller {
 
     @PostMapping("/guardar")
     public String arbolGuardar(Arbol arbol,
-                                   @RequestParam("imagenFile") MultipartFile imagenFile) {
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             ArbolService.save(arbol);
         }
@@ -29,7 +33,6 @@ public class arbolcontroller {
         ArbolService.save(arbol);
         return "redirect:/arbol/listado";
     }
-
 
     @GetMapping("/listado")
     public String inicio(Model model) {
